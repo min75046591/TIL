@@ -1,8 +1,8 @@
-a = 0
-while a < 3:
-    print(a)
-    a += 1
-print('끝')
+# a = 0
+# while a < 3:
+#     print(a)
+#     a += 1
+# print('끝')
 
 
 number = int(input('양의 정수를 입력해주세요.: '))

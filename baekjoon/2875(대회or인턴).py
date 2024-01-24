@@ -11,11 +11,31 @@
 # elif n < m:
 #     print((m - k + n)//3)
 
-def cal_max_teams(n, m, k):
-    max_teams = min(n//2, m, (n+m-k)//3)
-    return max_teams
-
 n, m, k = map(int, input().split())
 
+def cal_max_teams(n, m, k):
+    max_teams = min(n//2, m, (n+m-k//3))
+    return max_teams
+
 result = cal_max_teams(n, m, k)
+
 print(result)
+
+
+
+
+
+
+
+
+
+
+
+# def cal_max_teams(n, m, k):
+#     max_teams = min(n//2, m, (n+m-k)//3)
+#     return max_teams
+
+# n, m, k = map(int, input().split())
+
+# result = cal_max_teams(n, m, k)
+# print(result)
