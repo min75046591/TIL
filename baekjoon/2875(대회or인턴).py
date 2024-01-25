@@ -4,13 +4,6 @@
     # 최대의 팀 수
 # 여학생 : N / 남학생 : M / 인턴쉽 : K
 
-# n, m, k = map(int, input().split())
-
-# if n > m:
-#     print((n - k + m)//3)
-# elif n < m:
-#     print((m - k + n)//3)
-
 n, m, k = map(int, input().split())
 
 def cal_max_teams(n, m, k):
@@ -22,12 +15,13 @@ result = cal_max_teams(n, m, k)
 print(result)
 
 
+# 처음 코드
+# n, m, k = map(int, input().split())
 
-
-
-
-
-
+# if n > m:
+#     print((n - k + m)//3)
+# elif n < m:
+#     print((m - k + n)//3)
 
 
 
