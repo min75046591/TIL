@@ -13,11 +13,12 @@ N = int(input())
 pi = map(int, input().split())
 
 sort_list = sorted(pi)
+result = 0
 
-def sh_time():
-    result = 0
-    for i in range(N):
-        i[i] += i[i+1]
-        result += i[i]
+for i in range(N):
+    if i >= 1:
+        sort_list[i] += sort_list[i-1]
 
-        print(result)
+for i in sort_list:
+    result += i
+print(result)
