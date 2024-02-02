@@ -7,9 +7,9 @@ def binary_search(page, target):
         if c == target:
             break
         elif c > target:
-            end = c - 1
+            end = c
         else:
-            start = c + 1
+            start = c
         cnt += 1
     return cnt
 

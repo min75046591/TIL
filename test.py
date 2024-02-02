@@ -1,14 +1,24 @@
-N = int(input())
+T = int(input())
+for tc in range(1, T+1):
+    N, K = map(int, input().split())
+    arr = [list(map(int, input().split())) + [0] for _ in range(N)] + [[0]*(N+1)]
 
-for i in range(N):
-    tmp = i
-    for s in str(i):
-        tmp += int(s)    
+    N += 1
+    ans = 0
+    for i in range(N):
+        cnt = 0
+        for j in range(N):
+            if arr[i][j]:
+                cnt += 1
+        else:
+            if cnt == K:
+                ans += 1
+            cnt = 0
 
-    ##print(tmp)/
-
-    if tmp == N:
-        print(i)
-        break
-    elif i == N:
-        print(0)
+    for j in range(N):
+        if arr[i][j]:
+            cnt += 1
+        else:
+            if cnt == K:
+                ans += 1
+                cnt = 0
