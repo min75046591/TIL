@@ -19,7 +19,7 @@ for _ in range(1, 10+1):
         sum_li.append(tmp_vertical_sum)
         sum_li.append(cross_one_sum)
         sum_li.append(cross_two_sum)
-    max_v = 0s
+    max_v = 0
     for one_sum in sum_li:
         if max_v < one_sum:
             max_v = one_sum

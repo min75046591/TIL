@@ -11,7 +11,7 @@ for tc in range(1, T+1):
 
     bus = 0  # 버스의 현재 위치
     count = 0  # 충전횟수
-    while bus<N:  # 마지막 충전 이후 종점에 도착할 수 없으면
+    while bus < N:  # 마지막 충전 이후 종점에 도착할 수 없으면
                 # 가장 먼 충전기를 찾으면 count +1
         last = 0
         for i in range(bus+1, bus+K+1):   # bus -> bus+k 사이 마지막 충전기 위치 1 찾기
