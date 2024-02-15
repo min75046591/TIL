@@ -10,7 +10,7 @@ import math
 
 N, K = map(int, input().split())
 room = 0
-student_li = [0] * 13
+student_li = [0] * 13  # 1~12가 필요 그래서 13을 곱함. 0~12
 for i in range(N):    # 학생들    
     gender, grade = map(int, input().split())
     if gender == 0:
