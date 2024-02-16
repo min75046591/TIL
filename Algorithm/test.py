@@ -1,27 +1,36 @@
-def f(i, k, s):  # i-1까지 선택한 원소의 합
-    global cnt
-    global min_v
-    cnt += 1
-    if i == k:
-        # print(*P)
-        if min_v > s:
-            min_v = s
-    # elif s >= min_v:
-    #     return
-    else:
-        for j in range(i, k):  # P[i]자리에 올 원소 P[j]
-            P[i], P[j] = P[j], P[i]  # P[i]<->P[j]
-            f(i + 1, k, s + arr[i][P[i]])
-            P[i], P[j] = P[j], P[i]  # 교환전으로 복구
+# 시작점 찾기
+def start(N):
+    for i in range(N):
+        for j in range(N):
+            if maze[i][j] == '2':
+                return i, j
+
+# 미로 탈출
+def escape(i, j, N): # i, j 시작점 / N 크기
+    q = []                      # 큐 생성
+    visited = [[0]*N for _ in range(N)]   # 방문 확인을 위한 리스트 생성
+    q.append((i,j))                 # 시작지점 인큐
+    visited[i][j] = 1              # 시작지점 방문표시
+    while q:                        # 큐에 아무것도 없을때 까지
+        i, j = q.pop(0)             # 방문 할 칸 디큐
+        for di, dj in [[1,0], [0,1], [-1,0], [0,-1]]:
+            ni, nj = i + di, j + dj
+            if 0 <= ni < N and 0 <= nj < N and maze[ni][nj] != '1' and visited[ni][nj] == 0:
+                q.append((ni,nj))
+                visited[ni][nj] = visited[i][j] + 1   # 인큐 표시
+
+        if maze[i][j] == '3':
+            return visited[i][j] - 2
+
+    return 0
+
 
 
 T = int(input())
-for tc in range(1, T + 1):
+for tc in range(1, T+1):
     N = int(input())
-    arr = [list(map(int, input().split())) for _ in range(N)]
-    P = [i for i in range(N)]
-    min_v = 100
-    cnt = 0
-    f(0, N, 0)
-    # print(f'#{tc} {min_v} {cnt}')
-    print(f'#{tc} {min_v}')
+    maze = [input() for _ in range(N)]
+
+    str_i, str_j = start(N)
+
+    print(f'#{tc} {escape(str_i, str_j, N)}')
