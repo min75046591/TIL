@@ -20,25 +20,24 @@ b : 흑돌 , w : 백돌
 -출력-
 흑돌과 백돌의 개수를 출력
 """
-def othello(i, j, bw):
+def othello(i, j, bw, N):
 # 보드판에 돌 넣기
     map[i][j] = bw
 # 돌 뒤집기
     # 상, 우상, 우, 우하, 하, 좌하, 좌, 좌상 검사
     for di, dj in [[-1,0], [-1,1], [0,1], [1,1], [1,0], [1,-1], [0,-1], [-1,-1]]:
         ni, nj = i+di, j+dj
+        tmp = []
         # 색이 다른 돌이면 계속 이동
         while 0 <= ni < N and 0 <= nj < N and map[ni][nj] == 3 - bw:
+            tmp.append((ni, nj))
             ni, nj = ni+di, nj+dj
-
-        # 같은 색 돌을 만나면 주변 탐색 시작
+            
+        # 다른 색 돌을 따라가다가 같은 색 돌을 만나면
         if 0 <= ni < N and 0 <= nj < N and map[ni][nj] == bw:
-            ni, nj = i+di, j+dj
-            # 주변에 반대색 돌이 있을 때까지 반복하여 뒤집기
-            while map[ni][nj] == 3 - bw:
-                map[ni][nj] = bw
-            # 현재 위치에서 di dj 방향으로 이동
-                ni, nj = ni+di, nj+dj
+            for k, l in tmp:
+                map[k][l] = bw
+
 
 T = int(input())
 for tc in range(1, T+1):
@@ -56,7 +55,7 @@ for tc in range(1, T+1):
 
 # 플레이 진행
     for i, j, color in play:  # 언패킹
-        othello(i-1, j-1, color)  # 입력값을 인덱스 값에 맞게 변환
+        othello(i-1, j-1, color, N)  # 입력값을 인덱스 값에 맞게 변환
 
 # 색깔별 돌의 개수
     B = W = 0
