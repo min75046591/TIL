@@ -25,25 +25,10 @@ input
 output
 4 2 5 3 1
 """
-<<<<<<< HEAD
-def line_up(N, pick_num_list, arr):
-    for i in range(2, N+1):  # 사람 순서 -> 1번째는 고정이라 2번째 사람부터
-        if pick_num_list[i-1] == 0:
-            arr.append(i)   # 사람 번호와 인덱스 번호를 인덱스 번호로 변환
-        elif pick_num_list[i-1] > 0:
-            arr.insert(i-1, i)       # 0 보다 큰 숫자를 뽑으면 그 숫자만큼 앞으로
-    return arr
 
-N = int(input())
-pick_num_li = list(map(int, input().split()))
-arr = []   # 순서를 저장할 배열[0,0,0,0,0]
-arr.append(1)   # 첫 번째 사람은 고정
-arr = line_up(N, pick_num_li, arr)
-=======
 N = int(input())
 pick_num = list(map(int, input().split()))
 arr = []
 for i in range(1, N+1):
     arr.insert(pick_num[i-1], i)
->>>>>>> 7cbc1657ae6197359f547c962fdc208cadc59c88
 print(*reversed(arr))
