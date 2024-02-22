@@ -13,6 +13,20 @@ for tc in range(1, T+1):
 
     for i in range(N):
         for j in range(N):
+            ni, nj = i, j
             if arr[i][j] == 1:
-                s = 0           # 사각형 넓이
-                # 오른쪽 길이
+                # 가로 길이
+                while ni < N and arr[i][nj] != 0:
+                    nj += 1
+                w = nj - j
+
+                # 세로 길이
+                while nj < N and arr[ni][j] != 0:
+                    ni += 1
+                l = ni - i
+
+                result = w * l
+
+                if max_v < result:
+                    max_v = result
+    print(f'#{tc} {max_v}')
