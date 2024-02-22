@@ -16,21 +16,21 @@ for tc in range(1, T+1):
     N, M = map(int, input().split())
     arr = [list(map(int, input().split())) for _ in range(N)]
     max_cnt = 0
+    # 오른쪽으로 탐색
     for i in range(N):
-        cnt = 0             # 행을 바꿨을때 초기화
-        for j in range(M):
-            if arr[i][j] == 1:
-                for di, dj in [[1, 0], [0, 1]]:
-                    ni, nj = i+di, j+dj
-                    if 0 <= ni < N and 0 <= nj < M and arr[ni][nj] == 1:
-                        cnt += 1
+        cnt = 1             # 행을 바꿨을때 초기화
+        for j in range(M-1):
+            if arr[i][j] == arr[i][j+1] == 1:      # 오른쪽으로 탐색
+                cnt += 1
+            if max_cnt < cnt:
+                max_cnt = cnt
 
-
-
-                # 최대 길이
-                if max_cnt < cnt:
-                    max_cnt = cnt
+    for k in range(M):
+        cnt = 1             # 행을 바꿨을때 초기화
+        for l in range(N-1):
+            if arr[l][k] == arr[l+1][k] == 1:      # 아래로 탐색
+                cnt += 1
+            if max_cnt < cnt:
+                max_cnt = cnt
 
     print(f'#{tc} {max_cnt}')
-
-
