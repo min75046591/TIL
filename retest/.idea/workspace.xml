@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="04ea5772-b41f-4cc7-aee6-2f09691eceb4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../Algorithm/긴급점검문제/10760-우주선착륙2.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Algorithm/긴급점검문제/9367-점점커지는당근개수.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Algorithm/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../Algorithm/input.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Algorithm/긴급점검문제/9489-고대유적.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Algorithm/긴급점검문제/9489-고대유적.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Algorithm/조금더어려운문제/8810-당근밭옆고구마밭.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/TIL.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/TIL.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Algorithm/조금더어려운문제/12726-토글.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Algorithm/조금더어려운문제/12726-토글.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Algorithm/조금더어려운문제/9198-당근밭경보기.py" beforeDir="false" afterPath="$PROJECT_DIR$/../Algorithm/조금더어려운문제/9198-당근밭경보기.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
