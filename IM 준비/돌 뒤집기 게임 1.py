@@ -9,8 +9,8 @@ for tc in range(1, T+1):
     for _ in range(M):
         i, j = map(int, input().split())
 
-        for k in range(j):
-            if i+k <= N:
-                arr[i+k] = arr[i]
+        for k in range(i, i+j):
+            if 0<=k<N:
+                arr[k] = arr[i]
 
-    print(f'#{tc}', *arr[1::])
+    print(f'#{tc}', *arr[1:])

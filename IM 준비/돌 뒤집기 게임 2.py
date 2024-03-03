@@ -9,14 +9,15 @@ for tc in range(1, T+1):
     for _ in range(M):
         i, j = map(int, input().split())
 
-        for k in range(1, j+1):
-            right = i + k
-            left = i - k
-            if 0 < left and right <= N and arr[left] == arr[right]:
-                if arr[left] == 0:
-                    arr[left] = 1
-                    arr[right] = 1
+        for p in range(1, j+1):
+            if 0<i-p and i+p<=N and arr[i-p] == arr[i+p]:
+                if arr[i-p] == 1:
+                    arr[i-p] = 0
+                    arr[i+p] = 0
                 else:
-                    arr[left] = 0
-                    arr[right] = 0
-    print(f'#{tc}', *arr[1::])
+                    arr[i-p] = 1
+                    arr[i+p] = 1
+
+    print(f'#{tc}', *arr[1:])
+
+
