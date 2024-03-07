@@ -11,13 +11,13 @@ for tc in range(1, T+1):
             if stack:
                 if (i == ')' and stack[-1] == '(') or (i == '}' and stack[-1] == '{'):
                     stack.pop()
-                else:
+                else:           # 다른 괄호가 들어있을때
                     result = 0
                     break
-            else:
+            else:               # 스택이 비어있으면 안됌
                 result = 0
                 break
-    if stack:
+    if stack:           # 괄호가 스택에 남아있으면 안됌
         result = 0
 
     print(f'#{tc} {result}')

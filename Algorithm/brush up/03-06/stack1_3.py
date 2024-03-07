@@ -16,20 +16,20 @@ def dfs(s, v):     # 시작점 s
     while True:        # 스택이 비워질 때 까지
         if visited[s] == 0:
             print(s, end=' ')
-            visited[s] = 1
-        for x in adjl[s]:   # i에 인접한 x
+            visited[s] = 1      # 1로 방문표시
+        for x in adjl[s]:   # s에 인접한 x
             if visited[x] == 0:     # 방문한 적이 없으면
-                stack.append(s)     # 경로 i를 push하고
+                stack.append(s)     # 경로 s를 push하고
                 s = x               # x로 이동
                 break           # for x
         else:           # i에 인접한 정점이 더 이상 없으면
             if stack:       # pop()
-                i = stack.pop()
+                s = stack.pop()
             else:   # 스택이 비었으면
                 return  # 중지
 
 
-V, E = map(int, input().split())
+V, E = map(int, input().split())        # V 노드 수, E 간선 수
 arr = list(map(int, input().split()))
 adjl = [[] for _ in range(V+1)]    # 인접 리스트
 for i in range(E):

@@ -19,7 +19,7 @@ def bfs(i, j):
         for di, dj in [[0, 1], [1, 0], [0, -1], [-1, 0]]:
             ni, nj = i+di, j+dj
             if 0<=ni<N and 0<=nj<N and arr[ni][nj] != 0:    # 맵을 나가지 않고 벽이 아닌 경우
-                
+
 
 
 
