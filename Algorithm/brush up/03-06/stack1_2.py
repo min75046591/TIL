@@ -21,4 +21,3 @@ if stack:
 else:
     ans = 'True'
 print(ans)
-
