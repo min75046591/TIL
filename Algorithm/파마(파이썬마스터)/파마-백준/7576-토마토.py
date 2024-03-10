@@ -46,4 +46,4 @@ for p in arr:
     else:
         result = max(result, max(p))
 
-print(result-1)     # 토마토가 0으로 시작하기 때문에 -1을 해줘야 날짜로 변환 가능
+print(result-1)     # 익은 토마토가 1으로 시작하기 때문에 -1을 해줘야 날짜로 변환 가능
