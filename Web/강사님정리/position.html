@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Position</title>
+
+    <style>
+        /* 포지션 스타일 속성 */
+        /* 
+        static
+        relative
+        absolute
+        fixed
+        sticky
+        */
+
+        div {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid black;
+            border-radius: 2px;
+        }
+
+        .static-example{
+            /* position: static; */
+            background-color: antiquewhite;
+        }
+
+        .relative-example{
+            position: relative;
+            background-color: aqua;
+            top: 50px;
+            left: 50px;
+        }
+        .absolute-example{
+            position:absolute;
+            background-color: blueviolet;
+            bottom: 50px;
+            right: 50px;
+        }
+        .fixed-example{
+            position: fixed;
+            background-color: darkgrey;
+            top: 50px;
+            right: 50px;
+        }
+        .sticky-example{
+            position: sticky;
+            background-color: coral;
+            top: 50px;
+            left: 50px;
+        }
+
+        .dummy-height{
+            height: 2000px;
+        }
+    </style>
+</head>
+<body>
+    <div class="static-example">
+        <h1>position: static</h1>
+        <p>요소의 기본값으로, 요소들은 문서의 흐름에 따라 배치됨</p>
+    </div>
+    <div class="relative-example">
+        <h1>position: relative</h1>
+        <p>요소를 문서의 흐름에 따라 배치하고, 
+            top, bottom, left, right 값을 사용하여 위치를 이동할 수 있습니다.
+        </p>
+    </div>
+    <div class="absolute-example">
+        <h1>position: absolute</h1>
+        <p>요소를 문서의 원래 위치에서 제거하고,
+            가장 가까운 상위요소 중 relatvie 를 찾아 해당 요소에 대해 상대적으로 배치합니다.
+            만약, 상위 요소 중 relatvie를 찾을 수 없다면 body tag를 기준으로 배치됩니다.
+        </p>
+    </div>
+
+    <div class="fixed-example">
+        <h1>position: fixed</h1>
+        <p>요소를 문서의 원래 위치에서 제거하고, 뷰포트를 기준으로 고정합니다.</p>
+    </div>
+    <div class="sticky-example">
+        <h1>stick-example</h1>
+        <p>요소를 문서에 따라 배치하고, 스크롤을 통해 정해둔 임계점에 도달하면, 
+            fixed로 바뀐다.</p>
+    </div>
+    <div class="dummy-height"></div>
+    <div>
+        <h2>html Normal Flow</h2>
+        <p>HTML 문서의 요소들은 기본적으로 normal flow 에 따라 배치됩니다.</p>
+        <p>Normal flow 는 요소들이 문서의 흐름에 따라 배치되는 것을 의미합니다.</p>
+        <p>Normal flow 는 요소들이 block 레벨 요소와 inline 레벨 요소로 구분됩니다.</p>
+        <p>Block 레벨 요소는 항상 새로운 줄에서 시작하고, 가능한 전체 너비를 차지합니다.</p>
+        <p>Inline 레벨 요소는 새로운 줄에서 시작하지 않고, 필요한 만큼의 너비를 차지합니다.
+            <span>Inline 레벨 요소는 새로운 줄에서 시작하지 않고, 필요한 만큼의 너비를 차지합니다.</span>
+        </p>
+    </div>
+    
+</body>
+</html>
