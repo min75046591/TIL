@@ -10,17 +10,7 @@ N개의 수로 이루어진 수열 -> 최대 10개
 
 결과의 최대와 최소를 구하라!
 """
-N = int(input())
-nums = list(map(int, input().split()))
-plus, minus, multip, divi = map(int, input().split())
-i = nums[0]     # 첫번째 피연산자
-
-max_v = -1e9       # 최대 값 10억 1 * -109
-min_v = 1e9   # 최소 값 -10억 1 * 109
-
-# https://velog.io/@miiingirok/%EB%B0%B1%EC%A4%80-14888.-%EC%97%B0%EC%82%B0%EC%9E%90-%EB%81%BC%EC%9B%8C%EB%84%A3%EA%B8%B0-Python
-
-def dfs(n, i):  # n번째 숫자, 계속 연산이 실행되는 첫번째 피연산자
+def dfs(n, i):      # n번째 숫자, 계속 연산이 실행되는 첫번째 피연산자
     global max_v, min_v, plus, minus, multip, divi
 
     # N개의 숫자를 다 돌았을 때
@@ -48,13 +38,23 @@ def dfs(n, i):  # n번째 숫자, 계속 연산이 실행되는 첫번째 피연
         multip += 1
 
     # 나누기 -> 음수를 양수로 나눌 때는 C++14의 기준
-    if divi > 0:        # 나누기 연산자가 1개 이상 있을 때
+    if divi > 0:  # 나누기 연산자가 1개 이상 있을 때
         divi -= 1
-        if i < 0:   # 음수 일 떄
-            dfs(n+1, -(abs(i) // nums[n]))
+        if i < 0:  # 음수를 양수로 나눌 때의 조건 검사
+            dfs(n + 1, -(abs(i) // abs(nums[n])))  # 양수로 바꾼 뒤 나눗셈 연산 수행
         else:
-            dfs(n+1, i // nums[n])
+            dfs(n + 1, i // nums[n])
         divi += 1
+
+
+N = int(input())
+nums = list(map(int, input().split()))
+plus, minus, multip, divi = map(int, input().split())
+i = nums[0]     # 첫번째 피연산자
+
+max_v = int(-1e9)       # 최대 값 10억 1 * -109
+min_v = int(1e9)   # 최소 값 -10억 1 * 109
+
 
 # 함수 호출
 dfs(1, i)   # N의 첫번째를 의미하는 1, 첫번째 피연산자 i (i=nums[0])
