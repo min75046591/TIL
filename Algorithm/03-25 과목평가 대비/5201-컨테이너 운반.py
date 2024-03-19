@@ -20,11 +20,14 @@ for tc in range(1, T+1):
     w.sort(reverse=True)    # 화물의 무게 오름차순
     t.sort(reverse=True)    # 적재용량 오름차순
 
-    for i in range(M):      # 트럭을 돌고
-        for j in range(N):  # 화물을 돌고
-            if t[i] >= w[j]:
-                tmp.append(j)
-                break
+    i = j = 0
+    while i < M and j < N:
+        if t[i] >= w[j]:
+            tmp.append([w[j]])
+            i += 1
+        j += 1
+
+
 
     # 컨테이너들의 무게 합
     sum_v = 0
