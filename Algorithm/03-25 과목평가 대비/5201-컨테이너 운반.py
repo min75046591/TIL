@@ -26,6 +26,16 @@ for tc in range(1, T+1):
             i += 1
         j += 1                              # 적재용량이 컨테이너 무게보다 작을 땐 다음 컨테이너로 이동
 
+    w.sort(reverse=True)    # 화물의 무게 오름차순
+    t.sort(reverse=True)    # 적재용량 오름차순
+
+    i = j = 0
+    while i < M and j < N:
+        if t[i] >= w[j]:
+            tmp.append([w[j]])
+            i += 1
+        j += 1
+
     # 컨테이너들의 무게 합
     sum_v = 0
     for i in tmp:
