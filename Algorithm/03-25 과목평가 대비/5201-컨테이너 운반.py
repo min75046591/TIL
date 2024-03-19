@@ -12,19 +12,19 @@ A도시에서 B도시로 최대 M대의 트럭이 편도로 한 번만 운행
 """
 T = int(input())
 for tc in range(1, T+1):
-    N, M = map(int, input().split())    # 컨테이너 수, 트럭 수
-    w = list(map(int, input().split())) # 컨테이너의 무게들
-    t = list(map(int, input().split())) # 트럭의 적재용량 들
-    tmp = []    # 운반 가능한 컨테이너들을 모을 리스트
+    N, M = map(int, input().split())        # 컨테이너 수, 트럭 수
+    w = list(map(int, input().split()))     # 컨테이너의 무게들
+    t = list(map(int, input().split()))     # 트럭의 적재용량들
+    tmp = []                                # 운반 가능한 컨테이너들을 모을 리스트
+    w.sort(reverse=True)                    # 화물의 무게 오름차순
+    t.sort(reverse=True)                    # 적재용량 오름차순
 
-    w.sort(reverse=True)    # 화물의 무게 오름차순
-    t.sort(reverse=True)    # 적재용량 오름차순
-
-    for i in range(M):      # 트럭을 돌고
-        for j in range(N):  # 화물을 돌고
-            if t[i] >= w[j]:
-                tmp.append(j)
-                break
+    i = j = 0
+    while i < M and j < N:                  # 범위에 벗어나지 않을 때 동안
+        if t[i] >= w[j]:                    # 적재용량이 컨테이너 무게보다 크거나 같을 때
+            tmp.append(w[j])                # 컨테이너 무게 넣기
+            i += 1
+        j += 1                              # 적재용량이 컨테이너 무게보다 작을 땐 다음 컨테이너로 이동
 
     # 컨테이너들의 무게 합
     sum_v = 0
