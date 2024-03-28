@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block style %}
+<style>
+    .container{
+        display: flex;
+        flex-direction: column;
+    }
+</style>
+
+{% endblock style %}
+
+
+
+{% block content %}
+<h1>디테일 화면</h1>
+
+<div class='container'>
+    <p>title : {{todo.title}}</p>
+    <p>완료 여부 : {{todo.completed}}</p>
+</div>
+<a href="{% url "todos:index" %}">[back]</a>
+{% endblock content %}
