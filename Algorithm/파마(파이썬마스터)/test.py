@@ -12,7 +12,6 @@ def catch(i, j, s):
     if (i-1 >= 0 and (cage[i][j] == 1 or cage[i][j] == 2 or cage[i][j] == 4 or cage[i][j] == 7)
             and visited[i-1][j] == 0
             and (cage[i-1][j] == 1 or cage[i-1][j] == 2 or cage[i-1][j] == 5 or cage[i-1][j] == 6)):
-
         d.append((i-1, j))      # 이동 시
         visited[i-1][j] = 1     # 방문표시
         catch(i-1, j, s+1)           # 이동

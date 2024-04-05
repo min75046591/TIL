@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h1>INDEX PAGE</h1>
+{% for movie in movies %}
+<div class="card" style="width: 18rem;">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{movie.Title}}</h5>
+      <p class="card-text">{{movie.Description}}</p>
+      <a href="{% url "movies:detail" movie.pk %}" class="btn btn-primary">Detail</a>
+    </div>
+  </div>    
+<div>
+        
+{% endfor %}
+{% endblock content %}

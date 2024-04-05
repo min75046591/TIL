@@ -4,43 +4,40 @@
 -> 지나갈 수 있는 곳은 다 세기
 """
 from collections import deque
+di = [-1, 1, 0, 0]
+dj = [0, 0, -1, 1]
 
-def catch(i, j, s):
-    visited[i][j] = 1    #  방문 표시
-    if s == L:           # 시간이 다 됐을 때
+def bfs(i, j, s):
+    # 종료 조건
+    if s > L:  # 시간이 다 됐을 때
         return
+    d = deque([i, j])
+    visited[i][j] = 1    #  방문 표시
 
-    # 1. 상 (1, 2, 4, 7)일 경우에 가능
-    if (i-1 >= 0 and (cage[i][j] == 1 or cage[i][j] == 2 or cage[i][j] == 4 or cage[i][j] == 7)
-            and visited[i-1][j] == 0
-            and (cage[i-1][j] == 1 or cage[i-1][j] == 2 or cage[i-1][j] == 5 or cage[i-1][j] == 6)):
-        visited[i-1][j] += 1     # 방문표시
-        catch(i-1, j, s+1)           # 이동
-        visited[i-1][j] = 0     # 방문 초기화
+    while d:
+        i, j = d.popleft()
+        for k in range(4):
+            ni = i+di[k]
+            nj = j+dj[k]
 
-    # 2. 하 (1, 2, 5, 6)일 경우에 가능
-    if (i+1 < N and (cage[i][j] == 1 or cage[i][j] == 2 or cage[i][j] == 5 or cage[i][j] == 6)
-            and visited[i+1][j] == 0
-            and (cage[i+1][j] == 1 or cage[i+1][j] == 2 or cage[i+1][j] == 4 or cage[i+1][j] == 7)):
-        visited[i+1][j] += 1     # 방문표시
-        catch(i+1, j, s+1)           # 이동
-        visited[i+1][j] = 0     # 방문 초기화
+            if cage[i][j] == 1:
+            # 1. 상 (1, 2, 4, 7)일 경우에 가능
+                if i-1 >= 0 and visited[i-1][j] == 0 and (cage[i-1][j] == 1
+                                                       or cage[i-1][j] == 2
+                                                       or cage[i-1][j] == 4
+                                                       or cage[i-1][j] == 7):
 
-    # 3. 좌 (1, 3, 4, 5)일 경우에 가능
-    if (j-1 >= 0 and (cage[i][j] == 1 or cage[i][j] == 3 or cage[i][j] == 4 or cage[i][j] == 5)
-            and visited[i][j-1] == 0
-            and (cage[i][j-1] == 1 or cage[i][j-1] == 3 or cage[i][j-1] == 6 or cage[i][j-1] == 7)):
-        visited[i][j-1] += 1     # 방문표시
-        catch(i, j-1, s+1)           # 이동
-        visited[i][j-1] = 0     # 방문 초기화
 
-    # 4. 우 (1, 3, 6, 7)일 경우에 가능
-    if (j+1 < M and (cage[i][j] == 1 or cage[i][j] == 3 or cage[i][j] == 6 or cage[i][j] == 7)
-            and visited[i][j+1] == 0
-            and (cage[i][j+1] == 1 or cage[i][j+1] == 3 or cage[i][j+1] == 4 or cage[i][j+1] == 5)):
-        visited[i][j+1] += 1     # 방문표시
-        catch(i, j+1, s+1)           # 이동
-        visited[i][j+1] = 0     # 방문 초기화
+
+
+        # 2. 하 (1, 2, 5, 6)일 경우에 가능
+
+
+        # 3. 좌 (1, 3, 4, 5)일 경우에 가능
+
+
+        # 4. 우 (1, 3, 6, 7)일 경우에 가능
+
 
 
 T = int(input())
@@ -50,7 +47,7 @@ for tc in range(1, T+1):
     cage = [list(map(int, input().split())) for _ in range(N)]
     visited = [[0]*M for _ in range(N)]
     cnt = 0      # 탈주범이 위치 할 수 있는 장소의 개수
-    catch(R, C, 0)  # 시작 위치
+    bfs(R, C, 0)  # 시작 위치
 
     # 방문 위치 찾기
     for k in range(N):
