@@ -46,6 +46,15 @@ RENAME TO
 
 PRAGMA table_info('new_examples_table');
 
+-- 2.4 컬럼 속성만 바꾸기
+ALTER TABLE 
+  테이블이름
+ALTER COLUMN 
+  컬럼이름 
+SET 
+  데이터타입 [기본값];
+
+
 
 -- 3. Delete a table
 DROP TABLE new_examples_table;
