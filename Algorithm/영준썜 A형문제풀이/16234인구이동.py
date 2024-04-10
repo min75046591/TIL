@@ -13,7 +13,7 @@ def bfs(u, i, j, N, L, R): # 연합 찾기
                 if union[ni][nj]==0 and L<=abs(p[ni][nj]-p[i][j])<=R: # 아직 연합에 속하지 않고 인구범위이내면
                     union[ni][nj] = u # 국경을 열어 연합에 포함시키고
                     q.append((ni, nj)) # 탐색 계속
-    # 연합의 인구구하기
+    # 연합의 인구 구하기
     if len(ulist)>=2: # 연합에 속한 나라가 2개 이상이면
         s = 0
         for pos in ulist:
