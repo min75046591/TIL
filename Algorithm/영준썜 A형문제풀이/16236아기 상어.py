@@ -13,7 +13,7 @@ def f(N, size):
     while(len(q)!=0):
         i = q.pop(0)
         j = q.pop(0)
-        if checked[i][j] == 0 and 0<sea[i][j]<size: # 확인 안된 작은 물고기가 있을 때
+        if checked[i][j] == 0 and 0 < sea[i][j] < size: # 확인 안된 작은 물고기가 있을 때
             if minV == 0: # 처음 만나는 물고기인 경우 거리 저장
                 minV = visited[i][j]
                 checked[i][j] = minV
