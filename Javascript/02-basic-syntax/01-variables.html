@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    // let
+     let number = 10
+    
+    // 재할당 가능
+     number = 20
+    
+    // 재선언 불가능
+     let number = 100
+
+    let number
+    console.log(number) // 초기 값이 없어도 에러는 나지 않지만 'undefined'가 뜸
+    // 01-variables.html:30 Uncaught TypeError: Assignment to constant variable.
+
+
+    // const
+    const secondnumber = 10
+
+    // 재할당 불가능
+    secondnumber = 20  // Uncaught TypeError: Assignment to constant variable.
+    
+    // 재선언 불가능
+    const secondnumber = 10
+    // Uncaught SyntaxError: Identifier 'secondnumber' has already been declared
+
+    const secondnumber
+    // const declarations must be initialized
+
+
+  </script>
+</body>
+
+</html>
