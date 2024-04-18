@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 인자로 주어지는 콜백 함수를 각 요소에 실행
+        // 그 반환값을 모아서 새로운 배열을 반환
+        // map 1
+        
+        const numbers = [1, 2, 3]
+        
+        const doubleFunc = function(number){
+            return number * 2
+        }
+        
+        const doubleNumbers = numbers.map(doubleFunc)
+        console.log(doubleNumbers)
+        
+        const doubleNumbers2 = numbers.map(function(number){
+            return number * 2
+        })
+        const doubleNumbers3 = numbers.map((number) => {
+            return number * 2
+        })
+
+        
+        // map 2
+        const newNumbers = [4, 9, 16]
+
+
+
+
+        // map 3
+
+        const images = [
+        { height: '34px', width: '39px' },
+        { height: '54px', width: '19px' },
+        { height: '83px', width: '75px' },
+        ]
+        
+        // 객체의 높이값만 들어있는 배열 만들기
+        const heights = images.map(function(image){
+            return image.height
+        })
+        console.log(heights)
+
+
+        </script>
+</body>
+</html>

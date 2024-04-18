@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 콜백 조건에 맞는 '하나의 값' 반환
+        // 해당 값이 없는 경우, undefined
+
+        // find 1
+        const avengers = [
+        { name: 'Tony Stark', age: 45 },
+        { name: 'Steve Rogers', age: 32 },
+        { name: 'Thor', age: 40 },
+        ]
+
+        const avanger = avengers.find((avanger) => avanger.name === 'Tony Stark')
+        console.log(avanger)
+
+
+        // find 2 
+
+        const people = [
+            { id: 1, admin: false },
+            { id: 2, admin: false },
+            { id: 3, admin: true },
+            ]
+
+        const admin = people.find((person) => person.admin)
+        console.log(admin)
+
+        // find 3
+
+        const accounts = [
+            { name: 'justin', balance: 1200 },
+            { name: 'harry', balance: 50000 },
+            { name: 'jason', balance: 24000 },
+        ]
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // filter 는 주어지는 콜백인자를 각 요소에 대해 한 번씩 실행
+        // 주어지는 조건이 true 판단되는 요소를 모아서 새로운 배열을 반환한다.
+        
+        // filter 1
+        const products = [
+        { name: 'cucumber', type: 'vegetable' },
+        { name: 'banana', type: 'fruit' },
+        { name: 'carrot', type: 'vegetable' },
+        { name: 'apple', type: 'fruit' },
+        ]
+
+        const fruits = products.filter(function(product){
+            return product.type === 'fruit'  // boolean 형 리턴
+        })
+
+        console.log(fruits)
+
+
+        const numbers = [15, 25, 35, 45, 55, 65, 75, 85, 95]
+
+        // 숫자 중 50을 넘는 거 담자
+        const filterNum = numbers.filter(function(num){
+            return num > 50
+        })
+        console.log(filterNum)
+
+    
+
+        const users = [
+  { id: 1, admin: false, name: 'harry' },
+  { id: 2, admin: false, name: 'aiden' },
+  { id: 3, admin: true, name: 'jun' },
+  { id: 4, admin: false, name: 'viktor' },
+  { id: 5, admin: true, name: 'isaac' },
+]
+
+const admins = users.filter(function(user){
+    return user.admin === true
+})
+
+
+    </script>
+    
+</body>
+</html>
