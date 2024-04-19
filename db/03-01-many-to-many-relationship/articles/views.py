@@ -44,7 +44,6 @@ def create(request):
 
 @login_required
 def delete(request, pk):
-    print(request)
     article = Article.objects.get(pk=pk)
     if request.user == article.user:
         article.delete()
