@@ -22,4 +22,10 @@ for tc in range(1, T+1):
             if Macintosh[i][j] == 1:
                 for di, dj in ([-1, 0], [1, 0], [0, 1], [0, -1]):
                     ni, nj = i+di, j+dj
-                    if ni 
+                    tmp = []
+                    while 0<=ni<N and 0<=nj<N and Macintosh[ni][nj]==0:
+                        Macintosh[ni][nj] = 1
+                        ni, nj = ni+di, nj+dj
+
+
+
