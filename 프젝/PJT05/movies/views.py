@@ -29,15 +29,14 @@ def create(request):
     return render(request, 'movies/create.html', context)
 
 
-
 def detail(request, pk):
     movie = Movie.objects.get(pk=pk)
     comments = movie.comment_set.all()
-    #comment_form = CommentForm()
+    comment_form = CommentForm()
     context = {
         'movie':movie,
         'comments':comments,
-        #'comment_form':comment_form,
+        'comment_form':comment_form,
     }
     return render(request, 'movies/detail.html', context)
 
