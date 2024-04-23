@@ -1,17 +1,21 @@
 # 목차
 
-- 1. DRF with N:1 Relation
+1. DRF with N:1 Relation
     - 1-1. 사전 준비
     - 1-2. GET
     - 1-3. POST
     - 1-4. DELETE & PUT
     - 1-5. 응답 데이터 재구성
 
-- 2. 역참조 데이터 구성
+<br>
+
+2. 역참조 데이터 구성
     - 2-1. 단일 게시글 & 댓글 목록
     - 2-2. 단일 게시글 & 댓글 개수
 
-- 3. API 문서화
+<br>
+
+3. API 문서화
 
 
 &nbsp;
