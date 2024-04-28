@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>LOG IN</h1>
+<hr>
+<!--
+  문제 2. 로그인 입력 폼 수정
+  form 필드를 p 태그로 감싸서 렌더링
+-->
+{% comment %} p태그로 하나씩 감싼 후 받을 항목을 찾아서 넣는다 {% endcomment %}
+<form action="{% url "accounts:login" %}" method="POST">
+  {% csrf_token %}
+  {% comment %} <p>Username: {{form.username}}</p>
+  <p>Password: {{form.password}}</p> {% endcomment %}
+  {{form.as_p}}
+  <input type="submit" value="LOG IN">
+</form>
+
+{% endblock content %}
