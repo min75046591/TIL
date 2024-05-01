@@ -1,67 +1,48 @@
-from collections import deque
+di = [-1, 1, 0, 0]
+dj = [0, 0, 1, -1]
 
-def catch(i, j, s):
-    d = deque([(i, j)])    # 시작 위치 인큐
-    visited[i][j] = 1    #  방문 표시
+def dfs(i, j, cnt, work):
+    global max_len
+    if max_len < cnt:
+        max_len = cnt
 
-    if s == L:           # 시간이 다 됐거나 더 이상 갈 곳이 없을 때
-        return
-
-    # 상(1,2,5,6) 하(1,2,4,7) 좌(1,3,4,5) 우(1,3,6,7) 로만 갈 수 있음
-    # 1. 상 (1, 2, 4, 7)일 경우에 가능
-    if (i-1 >= 0 and (cage[i][j] == 1 or cage[i][j] == 2 or cage[i][j] == 4 or cage[i][j] == 7)
-            and visited[i-1][j] == 0
-            and (cage[i-1][j] == 1 or cage[i-1][j] == 2 or cage[i-1][j] == 5 or cage[i-1][j] == 6)):
-        d.append((i-1, j))      # 이동 시
-        visited[i-1][j] = 1     # 방문표시
-        catch(i-1, j, s+1)           # 이동
-    else:
-        return
-
-    # 2. 하 (1, 2, 5, 6)일 경우에 가능
-    if (i+1 < N and (cage[i][j] == 1 or cage[i][j] == 2 or cage[i][j] == 5 or cage[i][j] == 6)
-            and visited[i+1][j] == 0
-            and (cage[i+1][j] == 1 or cage[i+1][j] == 2 or cage[i+1][j] == 4 or cage[i+1][j] == 7)):
-        d.append((i+1, j))      # 이동 시
-        visited[i+1][j] = 1     # 방문표시
-        catch(i+1, j, s+1)           # 이동
-    else:
-        return
-
-    # 3. 좌 (1, 3, 6, 7)일 경우에 가능
-    if (j-1 >= 0 and (cage[i][j] == 1 or cage[i][j] == 3 or cage[i][j] == 6 or cage[i][j] == 7)
-            and visited[i][j-1] == 0
-            and (cage[i][j-1] == 1 or cage[i][j-1] == 3 or cage[i][j-1] == 4 or cage[i][j-1] == 5)):
-        d.append((i, j-1))      # 이동 시
-        visited[i][j-1] = 1     # 방문표시
-        catch(i, j-1, s+1)           # 이동
-    else:
-        return
-
-    # 4. 우 (1, 3, 4, 5)일 경우에 가능
-    if (j+1 < M and (cage[i][j] == 1 or cage[i][j] == 3 or cage[i][j] == 4 or cage[i][j] == 5)
-            and visited[i][j+1] == 0
-            and (cage[i][j+1] == 1 or cage[i][j+1] == 3 or cage[i][j+1] == 6 or cage[i][j+1] == 7)):
-        d.append((i, j+1))      # 이동 시
-        visited[i][j+1] = 1     # 방문표시
-        catch(i, j+1, s+1)           # 이동
-    else:
-        return
-
+    for k in range(4):
+        ni, nj = i + di[k], j + dj[k]
+        if 0 <= ni < N and 0 <= nj < N and visited[ni][nj] == 0:
+            if tops[i][j] > tops[ni][nj]:
+                visited[ni][nj] = 1
+                dfs(ni, nj, cnt + 1, work)
+                visited[ni][nj] = 0  # 백트래킹 -> 방문표시 초기화
+            else:
+                # 깎은 후의 봉우리 높이가 현재 봉우리 높이보다 작아야 함
+                for l in range(1, K + 1):
+                    if work == 1 and tops[ni][nj] - l < tops[i][j]:
+                        original_height = tops[ni][nj]  # 원래 높이 저장
+                        tops[ni][nj] -= l  # 봉우리 깎기
+                        visited[ni][nj] = 1
+                        dfs(ni, nj, cnt + 1, work - 1)
+                        visited[ni][nj] = 0  # 백트래킹 -> 방문표시 초기화
+                        tops[ni][nj] = original_height  # 깎은 봉우리 복구
 
 T = int(input())
-for tc in range(1, T+1):
-    # 터널 지도의 세로 N, 가로 M, 맨홀 뚜껑이 위치한 장소의 세로 R, 가로 C, 탈출 후 소요된 시간 L
-    N, M, R, C, L = map(int, input().split())
-    cage = [list(map(int, input().split())) for _ in range(N)]
-    visited = [[0]*M for _ in range(N)]
-    cnt = 0      # 탈주범이 위치 할 수 있는 장소의 개수
-    catch(R, C, 0)  # 시작 위치
+for tc in range(1, T + 1):
+    N, K = map(int, input().split())
+    tops = [list(map(int, input().split())) for _ in range(N)]
+    visited = [[0] * N for _ in range(N)]
+    max_len = 0  # 등산로 최대 길이
+    m_top = 0  # 가장 높은 봉우리
 
-    # 방문 위치 찾기
+    # 최대 높이 구하기
+    for p in range(N):
+        for q in range(N):
+            if m_top < tops[p][q]:
+                m_top = tops[p][q]
+
+    # 최대 높이와 같은 봉우리들의 위치 넣기
     for k in range(N):
-        for l in range(M):
-            if visited[k][l] == 1:
-                cnt += 1
+        for l in range(N):
+            if tops[k][l] == m_top:
+                visited[k][l] = 1
+                dfs(k, l, 1, 1)
 
-    print(f'#{tc} {cnt}')
+    print(f'#{tc} {max_len}')
