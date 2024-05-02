@@ -9,8 +9,12 @@
 
 <body>
   <div id="app">
-    <div v-for="item in items">
+    <!--  v-for에서 Vue 내부 동작시 key를 작성해야 Vue가 구분할 수 있음 -->
+    <!-- key는 반드시 고유한 값을 나타낼 수 있는 식별자여야 함 -->
+    <!-- vue의 정확한 동작을 위함 -->
+    <div v-for="item in items" :key="item.id">
       <!-- content -->
+      <p>{{ item }}</p>
     </div>
   </div>
 

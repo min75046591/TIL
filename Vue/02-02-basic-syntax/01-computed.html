@@ -10,12 +10,13 @@
 <body>
   <div id="app">
     <h2>남은 할 일</h2>
-    <p>{{ todos.length > 0 ? '아직 남았다' : '퇴근!' }}</p>
+    <p>{{ rest0fTodos }}</p>
+    <p>{{ getRest0fTodos() }}</p>
   </div>
 
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
-    const { createApp, ref } = Vue
+    const { createApp, ref, computed } = Vue
 
     const app = createApp({
       setup() {
@@ -25,6 +26,14 @@
           { text: 'TIL 작성' }
         ])
 
+
+        const rest0fTodos = computed(() => {
+          return todos.value.length > 0 ? '아직 남았다' : '퇴근!'
+        })
+
+        const getRest0fTodos = function () {
+          return todos.value.length > 0 ? '아직 남았다' : '퇴근!'
+        }
 
 
         // Write operation failed: computed value is readonly
@@ -36,6 +45,8 @@
 
         return {
           todos,
+          rest0fTodos,
+          getRest0fTodos,
         }
       }
     })

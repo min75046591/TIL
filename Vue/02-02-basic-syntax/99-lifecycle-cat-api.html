@@ -15,7 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
-    const { createApp, ref } = Vue
+    const { createApp, ref, onMounted } = Vue
     const URL = 'https://api.thecatapi.com/v1/images/search'
 
     const app = createApp({
@@ -38,6 +38,12 @@
               console.log('실패했다옹')
             })
         }
+        // 시작하자마자 onMounted를 활용하여 버튼을 누르기 전에 바로 함수를 실행하여
+        // 랜덤 고양이 사진을 가져오고 시작함
+        onMounted(() => {
+          getCatImage()
+        })
+
 
         return { getCatImage }
       }

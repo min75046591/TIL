@@ -28,6 +28,15 @@
         const message = ref('')
         const messageLength = ref(0)
 
+        watch(count, (newValue, oldValue) => {
+          console.log(`변화된 값: ${newValue} / 변하기 전 값: ${oldValue}`)
+        })
+
+        watch(message, (newValue) => {
+          messageLength.value = newValue.length
+        })
+
+
         return {
           count,
           message,
