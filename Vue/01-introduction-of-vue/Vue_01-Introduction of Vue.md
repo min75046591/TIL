@@ -217,3 +217,111 @@
 
 <br>
 
+### Vue 기본 구조
+
+- createApp()에 전달되는 객체는 Vue 컴포넌트(Component)
+
+- 컴포넌트의 상태는 setup() 함수 내에서 선언되어야 하며 **객체를 반환해야 함**
+
+![Alt text](image-14.png)
+
+<br>
+
+### 템플릿 렌더링
+
+- 반환된 객체의 속성은 템플릿에서 사용할 수 있음
+
+- Mustache syntax(콧수염 구문)를 사용하여 메시지 값을 기반으로 동적 텍스트를 렌더링
+
+![Alt text](image-15.png)
+
+<br>
+
+- 콘텐츠는 식별자나 경로에만 국한되지 않으며 유효한 JavaScript 표현식을 사용할 수 있음
+
+![Alt text](image-16.png)
+
+<br>
+
+### Event Listeners in Vue
+
+- 'v-on' directive를 사용하여 DOM 이벤트를 수신할 수 있음
+
+- 함수 내에서 반응형 변수를 변경하여 구성 요소 상태를 업데이트
+
+![Alt text](image-17.png)
+![Alt text](image-18.png)
+
+
+&nbsp;
+
+
+## 참고
+
+### Ref Unwrap 주의사항
+
+- 템플릿에서의 unwrap은 ref가 최상위 속성인 경우에만 적용 가능
+
+![Alt text](image-19.png)
+
+> object는 최상위 속성이지만 object.id는 그렇지 않음
+> 표현식을 평가할 때 object.id가 unwrap 되지 않고 ref 객체로 남아 있기 때문
+
+<br>
+
+- 이 문제를 해결하기 위해서는 "id를 최상위 속성으로 분해"해야 함
+
+![Alt text](image-20.png)
+
+<br>
+
+![Alt text](image-21.png)
+
+<br>
+
+### ref 객체가 필요한 이유
+
+- 일반적인 변수가 아닌 객체 데이터 타입으로 사용하는 이유는?
+
+- Vue는 템플릿에서 ref를 사용하고 나중에 ref의 값을 변경하면 자동으로 변경 사항을 감지하고 그에 따라 DOM을 업데이트 함 (의존성 추적 기반의 반응형 시스템)
+
+- Vue는 렌더링 중에 사용된 모든 ref를 추적하며, 나중에 ref가 변경되면 이를 추적하는 구성 요소에 대해 다시 렌더링
+
+- 이를 위해서 참조 자료형의 객체 타입으로 구현한 것
+
+> JavaScript에서는 일반 변수의 접근 또는 변형을 감지할 방법이 없기 때문
+
+<br>
+
+### 반응형 변수 vs 일반 변수
+
+![Alt text](image-22.png)
+
+<br>
+
+### SEO (Search Engine Optimization)
+
+- google, bing과 같은 검색 엔진 등에 내 서비스나 제품 등이 효율적으로 검색 엔진에 노출되도록 개선하는 과정을 일컫는 작업
+
+- 정보의 대상은 주로 HTML에 작성된 내용
+
+- 검색
+   - 각 사이트가 운용하는 검색 엔진에 의해 이루어지는 작업
+
+- 검색 엔진
+   - 웹 상에 존재하는 가능한 모든 정보들을 긁어 모으는 방식으로 동작
+
+- SPA 서비스도 검색 대상으로 넓히기 위해 JS를 지원하는 방식으로 발전하는 중
+
+<br>
+
+### CSR & SSR
+
+- CSR과 SSR은 흑과 백이 아님
+
+- 애플리케이션의 목적, 규모, 성능 및 SEO 요구 사항에 따라 달라질 수 있음
+   - 내 서비스에 작힙힌 렌더링 방식을 적절하게 활용할 수 있어야 함
+
+- SPA 서비스에도 SSR을 지원하는 Framework가 발전하고 있음
+   - Vue의 Next.js
+   - React의 Next.js
