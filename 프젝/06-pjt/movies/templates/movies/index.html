@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>INDEX PAGE</h1>
+<hr>
+{% for movie in movies %}
+    {{movie.title}}
+    {{movie.description}}
+    <a href="{% url "movies:detail" movie.pk %}">DETAIL</a>
+    <p>좋아요 : {{movie.like_user.all|length}}</p>
+    <form action="{% url "movies:likes" movie.pk %}" method='POST'>
+        {% csrf_token %}
+        {% if request.user in movie.like_user.all %}
+          <input type="submit" value='좋아요 취소'>      
+        {% else %}
+          <input type="submit" value='좋아요'>
+        {% endif %}
+      </form>
+
+{% endfor %}
+
+{% endblock content %}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>업다운 게임</title>
+</head>
+<body>
+  <h1>업다운 게임!!</h1>
+  <p>1~100 사이 숫자를 입력하세요.</p>
+
+  <form id="guessForm">
+    {% csrf_token %}
+    <label for="userGuess">Your Guess: </label>
+    <input type="number" id="userGuess" required>
+    <button type="submit">정답 제출</button>
+  </form>
+
+  <p>정답 : {{ target_number }}</p>
+
+  <p id="resultMessage"></p>
+  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.8/axios.min.js" integrity="sha512-PJa3oQSLWRB7wHZ7GQ/g+qyv6r4mbuhmiDb8BjSFZ8NZ2a42oTtAq5n0ucWAwcQDlikAtkub+tPVCw4np27WCg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script>
+    {% comment %} 
+      1. form 태그 가져오기
+      2. guess number 가져오기
+      3. 해당 데이터를 가지고 POST 요청 보내기
+        - CSRF_TOKEN 같이 보내야 함
+    {% endcomment %}
+
+    const guessForm = document.querySelector('#guessForm')
+    const csrfToken = document.querySelector('input[name="csrfmiddlewaretoken"]').value
+    
+
+    guessForm.addEventListener('submit', function (event) {
+      event.preventDefault()
+      const userGuess = document.querySelector('#userGuess').value
+
+      const data = {
+        'user_guess': userGuess
+      }
+
+      const sessionId = {{ session_id }}
+      const url = `/games/guess/${sessionId}/`
+
+      // 'application/json': json 데이터 형식
+      // 'application/x-www-form-urlencoded' : form 데이터로 변경
+      axios.post(url, data, {
+        headers: {
+          'Content-type': 'application/x-www-form-urlencoded',
+          'X-CSRFToken': csrfToken
+        }
+      }).then((response) => {
+        console.log('response = ', response.data)
+        const resultMessage = document.querySelector('#resultMessage')
+        resultMessage.innerHTML = response.data.message
+        if(response.data.is_correct) {
+          resultMessage.innerHTML += `<br>축하합니다! ${response.data.attempts + 1}번 만에 맞췄습니다!`
+        }
+      }).catch((error) => {
+        console.log('error = ', error)
+      })
+    })
+
+  </script>
+</body>
+</html>
