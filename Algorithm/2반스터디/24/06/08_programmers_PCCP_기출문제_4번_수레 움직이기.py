@@ -9,7 +9,7 @@ n x m 크기 격자 모양의 퍼즐판
 수레끼리 자리 바꾸기 못함
 """
 
-# 20개중 7개 정답
+# 20개중 5개 정답
 
 from collections import deque
 
@@ -34,12 +34,12 @@ def solution(maze):
                 blue_goal = (i, j)
     
     # BFS 초기화
-    queue = deque([(red_start, blue_start, 0, set([red_start]), set([blue_start]))])
+    queue = deque([(red_start, blue_start, 0)])
     visited = set()
     visited.add((red_start, blue_start))
     
     while queue:
-        red_pos, blue_pos, turns, red_visited, blue_visited = queue.popleft()
+        red_pos, blue_pos, turns = queue.popleft()
         
         # 두 수레가 모두 도착 지점에 도착했는지 확인
         if red_pos == red_goal and blue_pos == blue_goal:
@@ -50,18 +50,16 @@ def solution(maze):
             new_blue_pos = (blue_pos[0] + dr, blue_pos[1] + dc)
             
             # 빨간 수레 이동 가능 여부 체크
-            if not (0 <= new_red_pos[0] < n and 0 <= new_red_pos[1] < m and maze[new_red_pos[0]][new_red_pos[1]] != 5 and new_red_pos not in red_visited):
+            if not (0 <= new_red_pos[0] < n and 0 <= new_red_pos[1] < m and maze[new_red_pos[0]][new_red_pos[1]] != 5):
                 new_red_pos = red_pos
             
             # 파란 수레 이동 가능 여부 체크
-            if not (0 <= new_blue_pos[0] < n and 0 <= new_blue_pos[1] < m and maze[new_blue_pos[0]][new_blue_pos[1]] != 5 and new_blue_pos not in blue_visited):
+            if not (0 <= new_blue_pos[0] < n and 0 <= new_blue_pos[1] < m and maze[new_blue_pos[0]][new_blue_pos[1]] != 5):
                 new_blue_pos = blue_pos
             
-            # 두 수레가 같은 칸에 도착하는 경우를 방지
+            # 두 수레가 같은 칸에 도달하는 경우를 방지
             if new_red_pos != new_blue_pos and (new_red_pos, new_blue_pos) not in visited:
-                new_red_visited = red_visited | {new_red_pos}
-                new_blue_visited = blue_visited | {new_blue_pos}
                 visited.add((new_red_pos, new_blue_pos))
-                queue.append((new_red_pos, new_blue_pos, turns + 1, new_red_visited, new_blue_visited))
+                queue.append((new_red_pos, new_blue_pos, turns + 1))
     
     return 0
