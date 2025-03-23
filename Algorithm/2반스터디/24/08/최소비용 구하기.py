@@ -37,3 +37,6 @@ def sort_buses(buses):
 finish_sorted_buses = sort_buses(buses)
 for bus in finish_sorted_buses:
     print(bus)
+
+# 그리디가 아닌  문제!!!
+
